@@ -1,0 +1,2 @@
+D:\Projects\TodoList\TodoList\TodoList\bin\Debug\TodoList.exe.config
+D:\Projects\TodoList\Windows\TodoList\bin\Debug\TodoList.exe.config
