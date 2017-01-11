@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\TodoList\Windows\TodoList\App.xaml
-4-35045295
+10-416257157
 
-15-659785581
+24365389529
 83-1384121571
-MainWindow.xaml;Themes\Generic.xaml;Controls\UCTask.xaml;Views\TaskListView.xaml;
+Controls\ButtonUserControl.xaml;Controls\LabelCountUserControl.xaml;Controls\MenuButtonThreeBarsUserControl.xaml;MainWindow.xaml;Themes\Generic.xaml;Controls\UCTask.xaml;Views\TaskEditView.xaml;Views\TaskListEditView.xaml;Views\TaskListView.xaml;Views\TaskView.xaml;
 
-True
+False
 

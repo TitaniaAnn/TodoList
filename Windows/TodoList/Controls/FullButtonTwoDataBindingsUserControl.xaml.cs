@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace TodoList
 {
     /// <summary>
-    /// Interaction logic for UCTask.xaml
+    /// Interaction logic for FullButtonTwoDataBindingsUserControl.xaml
     /// </summary>
-    public partial class UCTask : UserControl
+    public partial class FullButtonTwoDataBindingsUserControl : UserControl
     {
-        public UCTask()
+        public FullButtonTwoDataBindingsUserControl()
         {
             InitializeComponent();
-
-            this.DataContext = this;
         }
-
-        public string TaskId { get; set; }
-        public string TaskName { get; set; }
-        public string ListType { get; set; }
-        public string ListColor { get; set; }
-
     }
 }

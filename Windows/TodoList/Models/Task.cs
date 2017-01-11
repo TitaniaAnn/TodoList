@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TodoList
 {
-    class Task
+    class Task2
     {
         private string notes;
         private string selfLink;
@@ -24,7 +24,7 @@ namespace TodoList
         //public bool Deleted { get; set; }
 
 
-        public Task(string id, string title, string notes, string parent, string selfLink, string status, bool? hidden, DateTime? completed, DateTime? due, DateTime? updated)
+        public Task2(string id, string title, string notes, string parent, string selfLink, string status, bool? hidden, DateTime? completed, DateTime? due, DateTime? updated)
         {
             Id = id;
             Title = title;

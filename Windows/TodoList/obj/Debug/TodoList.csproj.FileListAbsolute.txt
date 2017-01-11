@@ -57,3 +57,11 @@ D:\Projects\TodoList\Windows\TodoList\bin\Debug\System.Net.Http.Extensions.xml
 D:\Projects\TodoList\Windows\TodoList\bin\Debug\System.Net.Http.Primitives.xml
 D:\Projects\TodoList\Windows\TodoList\obj\Debug\Views\TaskListView.baml
 D:\Projects\TodoList\Windows\TodoList\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Views\TaskView.g.cs
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Views\TaskView.baml
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Controls\ButtonUserControl.g.cs
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Controls\ButtonUserControl.baml
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Controls\MenuButtonThreeBarsUserControl.g.cs
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Controls\MenuButtonThreeBarsUserControl.baml
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Controls\LabelCountUserControl.g.cs
+D:\Projects\TodoList\Windows\TodoList\obj\Debug\Controls\LabelCountUserControl.baml

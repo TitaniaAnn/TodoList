@@ -1,74 +1,48 @@
-﻿<Window
+﻿<Window xmlns:Controls="clr-namespace:TodoList.Controls" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
-        xmlns:Views="clr-namespace:TodoList.Views" x:Class="TodoList.MainWindow"
+        xmlns:Views="clr-namespace:TodoList.Views" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="TodoList.MainWindow"
         mc:Ignorable="d"
-        Title="Todo List" Height="350" Width="525">
+        Title="Todo List">
     <Window.Resources>
+        <SolidColorBrush x:Name="BrushHeaderBackgroundColor" x:Key="BrushHeaderBackgroundColor" Color="#FF0A5663"/>
+        <SolidColorBrush x:Name="BrushHeaderTextColor" x:Key="BrushHeaderTextColor" Color="#FFFFFCDE"/>
+        <SolidColorBrush x:Name="BrushMainBackgroundColor" x:Key="BrushMainBackgroundColor" Color="#FFF5F3DD"/>
         <Storyboard x:Key="sbShowTaskMenu" >
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-200,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-250,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
         <Storyboard x:Key="sbHideTaskMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-200,0,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-250,0,0,0" AccelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
+        <System:String x:Key="AllTasksCount">0</System:String>
     </Window.Resources>
     <Grid>
-
-        <!--<DockPanel>
-            <StackPanel x:Name="pnlTaskMenu" HorizontalAlignment="Left" Width="200" Margin="-200,0,0,0" Background="#FFF5F3DD">
-                <StackPanel Height="50" Background="#FF0A5663" Orientation="Horizontal">
-                    <Button x:Name="btnHideTaskMenu" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="30" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" Click="hideTaskMenu_Click" VerticalAlignment="Top">
-                        <Button.Content>
-                            <Grid Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" UseLayoutRounding="True" MinWidth="15" MinHeight="15">
-                                <Rectangle Fill="#FFFFFCDE" Height="2" Stroke="#FFFFFCDE" VerticalAlignment="Top" MinWidth="25" HorizontalAlignment="Stretch" />
-                                <Rectangle Fill="#FFFFFCDE" Height="2" Stroke="#FFFFFCDE" VerticalAlignment="Center" MinWidth="25" HorizontalAlignment="Stretch" />
-                                <Rectangle Fill="#FFFFFCDE" Height="2" Stroke="#FFFFFCDE" VerticalAlignment="Bottom" MinWidth="25" HorizontalAlignment="Stretch" />
-                            </Grid>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-                <Label x:Name="label1" Content="Label"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" DockPanel.Dock="Right">
-                <DockPanel x:Name="pnlMenuHeader" Height="50" Background="#FF0A5663" VerticalAlignment="Top" Margin="0" >
-                    <Button x:Name="btnShowTaskMenu" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="30" Height="30" HorizontalAlignment="Left" Click="showTaskMenu_Click" Margin="10,10,0,10">
-                        <Grid Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" UseLayoutRounding="True" MinWidth="15" MinHeight="15">
-                            <Rectangle Fill="#FFFFFCDE" Height="2" Stroke="#FFFFFCDE" VerticalAlignment="Top" MinWidth="25" HorizontalAlignment="Stretch" />
-                            <Rectangle Fill="#FFFFFCDE" Height="2" Stroke="#FFFFFCDE" VerticalAlignment="Center" MinWidth="25" HorizontalAlignment="Stretch" />
-                            <Rectangle Fill="#FFFFFCDE" Height="2" Stroke="#FFFFFCDE" VerticalAlignment="Bottom" MinWidth="25" HorizontalAlignment="Stretch" />
-                        </Grid>
-                    </Button>
-                    <Label x:Name="lblCurrentPanel" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="16" FontWeight="Bold" Foreground="#FFFFFCDE" Margin="0,11" />
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
-                        <Button x:Name="btnHeaderMenuMore" Background="{x:Null}" BorderBrush="{x:Null}">
-                            <Button.Content>
-                                <StackPanel>
-                                    <Label x:Name="lblMoreHeaderIcn" Content=". . ." Foreground="#FFFFFCDE" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Padding="0,4,1,4" Width="50" Height="50" FlowDirection="LeftToRight" HorizontalContentAlignment="Center"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="btnHeaderMenuAddTask" Background="{x:Null}" BorderBrush="{x:Null}" Width="50" Height="50">
-                            <Button.Content>
-                                <StackPanel>
-                                    <Label x:Name="lblAddTaskHeaderIcn" Foreground="#FFFFFCDE" Content="+" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Padding="5,2" ScrollViewer.CanContentScroll="True" FontFamily="Microsoft Sans Serif" HorizontalContentAlignment="Center"/>
-                                    <Label x:Name="lblAddTaskHeaderTxt" Foreground="#FFFFFCDE" Content="Task" HorizontalAlignment="Center" Padding="5,2" FontFamily="Microsoft Sans Serif" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
+        <DockPanel>
+            <DockPanel x:Name="HeaderPanel" Height="50" DockPanel.Dock="Top" Background="{DynamicResource BrushHeaderBackgroundColor}">
+                <Controls:MenuButtonThreeBarsUserControl x:Name="btnShowHideTaskMenu" Loaded="MenuButtonThreeBarsUserControl_Loaded" />
+                <Label x:Name="lblCurrentPanel" Content="All Tasks" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="16" FontWeight="Bold" Foreground="#FFFFFCDE" Margin="0,11" />
+                
+                
+            </DockPanel>
+            <DockPanel x:Name="TaskListViewPanel" Width="250" Margin="-250,0,0,0" Background="{DynamicResource BrushMainBackgroundColor}">
+                <Controls:ButtonUserControl x:Name="btnAllTask" Loaded="btnAllTask_Loaded" HorizontalAlignment="Stretch" DockPanel.Dock="Top" Height="50" />
+                <Controls:ButtonUserControl x:Name="btnTodayTask" Loaded="btnTodayTask_Loaded" HorizontalAlignment="Stretch" DockPanel.Dock="Top" Height="50" />
+                <Controls:ButtonUserControl x:Name="btnWeekTask" Loaded="btnWeekTask_Loaded" HorizontalAlignment="Stretch" DockPanel.Dock="Top" Height="50" />
+                <Separator Margin="0,5" DockPanel.Dock="Top" />
+                
+                <DockPanel DockPanel.Dock="Bottom">
+                    <Label Content="User" />
+                    <Label Content="Settings" DockPanel.Dock="Right" />
                 </DockPanel>
-                <StackPanel Height="269" >
-                    <ListView x:Name="lvTasksList" ItemsSource="{Binding}" >
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <local:UCTask  />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListView>
-                </StackPanel>
+                <Separator Margin="0,5" DockPanel.Dock="Bottom" />
+                <Views:TaskListView x:Name="TaskListViewControl" Loaded="TaskListViewControl_Loaded" DockPanel.Dock="Top" />
+            </DockPanel>
+
+            <StackPanel x:Name="pnlMain" Orientation="Vertical" HorizontalAlignment="Stretch" DockPanel.Dock="Right">
+                <Views:TaskView x:Name="TaskViewControl" Loaded="TaskViewControl_Loaded" />
             </StackPanel>
         </DockPanel>
         <StackPanel Width="200" Margin="0,0,-200,0" HorizontalAlignment="Right" Background="#FFF5F3DD" Panel.ZIndex="2">
@@ -76,26 +50,22 @@
                 <Label x:Name="lblTitleEdit" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="16" FontWeight="Bold" Foreground="#FFFFFCDE" />
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button x:Name="btnEditTaskCancel" Background="{x:Null}" BorderBrush="{x:Null}">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="X" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
-                                <Label Content="Cancel" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
-                            </StackPanel>
-                        </Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="X" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
+                            <Label Content="Cancel" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
+                        </StackPanel>
                     </Button>
                     <Button x:Name="btnEditTaskSave" Background="{x:Null}" BorderBrush="{x:Null}">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="*" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
-                                <Label Content="Save" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
-                            </StackPanel>
-                        </Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
+                            <Label Content="Save" Foreground="#FFFFFCDE" FontWeight="Bold"  FontFamily="Microsoft Sans Serif" />
+                        </StackPanel>
                     </Button>
                 </StackPanel>
             </Grid>
-        </StackPanel>-->
+        </StackPanel>
 
-        <Views:TaskListView x:Name="TaskListViewControl" Loaded="TaskListViewControl_Loaded"/>
+
 
     </Grid>
 </Window>

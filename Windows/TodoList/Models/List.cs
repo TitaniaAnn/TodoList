@@ -14,7 +14,7 @@ namespace TodoList
         public string Link { get; set; }
         public string Color { get; set; }
         public DateTime? LastUpdated { get; set; }
-        public IList<Task> Tasks { get; set; }
+        public IList<Task2> Tasks { get; set; }
 
         public List(string id, string title, string type, string link, DateTime? lastUpdated)
         {
@@ -23,10 +23,10 @@ namespace TodoList
             Type = type;
             Link = link;
             LastUpdated = lastUpdated;
-            Tasks = new List<Task>();
+            Tasks = new List<Task2>();
         }
 
-        public List(string id, string title, string type, string link, DateTime? lastUpdated, IList<Task> tasks)
+        public List(string id, string title, string type, string link, DateTime? lastUpdated, IList<Task2> tasks)
         {
             Id = id;
             Title = title;

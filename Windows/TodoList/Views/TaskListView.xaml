@@ -5,49 +5,62 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TodoList.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" Width="250">
+             d:DesignHeight="300" d:DesignWidth="250">
     <Grid>
-        <DockPanel Background="#FFDEDCC9" LastChildFill="True">
-
-            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontWeight="Medium" DockPanel.Dock="Top">
-                <Button.Content>
-                    <DockPanel LastChildFill="False" Width="225" Margin="5">
-                        <Label Content="Today" HorizontalAlignment="Left"  />
-
-                        <Label Content="5" DockPanel.Dock="Right" VerticalAlignment="Center" FontSize="12" Foreground="#FF767676" />
-                    </DockPanel>
-                </Button.Content>
-            </Button>
-
-            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontWeight="Medium" DockPanel.Dock="Top">
-                <Button.Content>
-                    <DockPanel LastChildFill="False" Width="225" Margin="5">
-                        <Label Content="Next 7 Days" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <Label DockPanel.Dock="Right" VerticalAlignment="Center" FontSize="12" Foreground="#FF767676" Content="5" />
-                    </DockPanel>
-                </Button.Content>
-            </Button>
-
-            <Separator Margin="0,5" DockPanel.Dock="Top" />
+        <DockPanel Background="#FFF5F3DD" LastChildFill="True">
+            <!--<Separator Margin="0,5" DockPanel.Dock="Top" />-->
             
-            <DockPanel DockPanel.Dock="Bottom">
+            <!--<DockPanel DockPanel.Dock="Bottom">
                 <Label Content="User" /><Label Content="Settings" DockPanel.Dock="Right" />
-            </DockPanel>
+            </DockPanel>-->
             
             <DockPanel DockPanel.Dock="Top" ScrollViewer.CanContentScroll="True" LastChildFill="False">
-                <ItemsControl ItemsSource = "{Binding Path = TaskLists}" DockPanel.Dock="Top">
+                <ItemsControl ItemsSource = "{Binding Path=TaskLists}" DockPanel.Dock="Top">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <DockPanel LastChildFill="False" Width="225" Margin="5">
-                                <Ellipse Fill="{Binding Path=Color, Mode=OneWay}" Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                                <Label Content="{Binding Path=Title, Mode=OneWay}" VerticalAlignment="Stretch" VerticalContentAlignment="Top" FontWeight="Medium" FontSize="16" />
-                                <Label DockPanel.Dock="Right" VerticalAlignment="Center" FontSize="12" Foreground="#FF767676" Content="5" />
-                            </DockPanel>
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" DockPanel.Dock="Top" Click="onButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Name="RootElement" >
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="MouseOver">
+                                                        <Storyboard>
+                                                            <ColorAnimation Storyboard.TargetName="ForegroundBrush2" Storyboard.TargetProperty="Color" To="#FFFFFCDE" />
+                                                            <ColorAnimation Storyboard.TargetName="BorderBrush2" Storyboard.TargetProperty="Color" To="#FF0A5663" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState Name="Pressed">
+                                                        <Storyboard>
+                                                            <ColorAnimation Storyboard.TargetName="BorderBrush2" Storyboard.TargetProperty="Color" To="Transparent"/>
+                                                            <ColorAnimation Storyboard.TargetName="ForegroundBrush2" Storyboard.TargetProperty="Color" To="Black" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Border.Background>
+                                                <SolidColorBrush x:Name="BorderBrush2" Color="Transparent"/>
+                                            </Border.Background>
+                                            <DockPanel LastChildFill="False" Margin="5" HorizontalAlignment="Stretch">
+                                                <Ellipse Fill="{Binding Path=Color, Mode=OneWay}" Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Path=Title, Mode=OneWay}" VerticalAlignment="Stretch" VerticalContentAlignment="Top" FontWeight="Medium" FontSize="16" >
+                                                    <Label.Foreground>
+                                                        <SolidColorBrush x:Name="ForegroundBrush2" Color="Black"/>
+                                                    </Label.Foreground>
+                                                </Label>
+                                                <Label DockPanel.Dock="Right" VerticalAlignment="Center" FontSize="12" Foreground="#FF767676" Content="5" />
+                                            </DockPanel>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Medium" DockPanel.Dock="Bottom" Content="+ Add Project" Padding="5" HorizontalContentAlignment="Left" />
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Medium" DockPanel.Dock="Bottom" Content="+ Add List" Padding="5" HorizontalContentAlignment="Left" />
             </DockPanel>
             
             

@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,24 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TodoList
+namespace TodoList.Views
 {
     /// <summary>
-    /// Interaction logic for UCTask.xaml
+    /// Interaction logic for TaskEditView.xaml
     /// </summary>
-    public partial class UCTask : UserControl
+    public partial class TaskEditView : UserControl
     {
-        public UCTask()
+        public TaskEditView()
         {
             InitializeComponent();
-
-            this.DataContext = this;
         }
-
-        public string TaskId { get; set; }
-        public string TaskName { get; set; }
-        public string ListType { get; set; }
-        public string ListColor { get; set; }
-
     }
 }

@@ -124,16 +124,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connections\GoogleTasksAPIConnection.cs" />
+    <Compile Include="Controls\ButtonUserControl.xaml.cs">
+      <DependentUpon>ButtonUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LabelCountUserControl.xaml.cs">
+      <DependentUpon>LabelCountUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MenuButtonThreeBarsUserControl.xaml.cs">
+      <DependentUpon>MenuButtonThreeBarsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\List.cs" />
     <Compile Include="Controls\UCTask.xaml.cs">
       <DependentUpon>UCTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\TaskListModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Compile Include="Views\TaskEditView.xaml.cs">
+      <DependentUpon>TaskEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskListEditView.xaml.cs">
+      <DependentUpon>TaskListEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TaskListView.xaml.cs">
       <DependentUpon>TaskListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\ButtonUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LabelCountUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MenuButtonThreeBarsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -154,7 +187,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TaskEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskListEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TaskListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

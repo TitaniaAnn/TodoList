@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -8,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace TodoList.Models
 {
-    class TaskListModel {}
+    class TaskModel {}
 
-    class TaskList : INotifyPropertyChanged
+    class Task : INotifyPropertyChanged
     {
         private string id;
         private string title;
-        private string color;
-        private string type;
-        private int count;
+        private string parentId;
 
         public string Id
         {
@@ -44,46 +41,18 @@ namespace TodoList.Models
             }
         }
 
-        public string Color
+        public string ParentId
         {
-            get { return this.color; }
+            get { return this.parentId; }
             set
             {
-                if (this.color != value)
+                if (this.parentId != value)
                 {
-                    this.color = value;
-                    RaisePropertyChanged("Color");
+                    this.parentId = value;
+                    RaisePropertyChanged("ParentId");
                 }
             }
         }
-
-        public string Type
-        {
-            get { return this.type; }
-            set
-            {
-                if (this.type != value)
-                {
-                    this.type = value;
-                    RaisePropertyChanged("Type");
-                }
-            }
-        }
-
-        public int Count
-        {
-            get { return this.count; }
-            set
-            {
-                if (this.count != value)
-                {
-                    this.count = value;
-                    RaisePropertyChanged("Count");
-                }
-            }
-        }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

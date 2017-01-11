@@ -20,9 +20,19 @@ namespace TodoList.Views
     /// </summary>
     public partial class TaskListView : UserControl
     {
+        public event RoutedEventHandler Click;
+
         public TaskListView()
         {
             InitializeComponent();
+        }
+
+        void onButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Click != null)
+            {
+                this.Click(this, e);
+            }
         }
     }
 }

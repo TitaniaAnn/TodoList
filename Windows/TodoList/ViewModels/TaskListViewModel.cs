@@ -11,57 +11,31 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TodoList.Connections;
 using TodoList.Models;
 
 namespace TodoList.ViewModels
 {
     class TaskListViewModel : ViewModelBase
     {
-        static string[] Scopes = { TasksService.Scope.TasksReadonly };
-        static string ApplicationName = "TodoListApp";
-
         public ObservableCollection<TaskList> TaskLists { get; set; }
+        public int AllTasksCount { get; set; }
 
-        public void LoadTaskList()
+        public void LoadTaskLists()
         {
-            UserCredential credential;
-            using (var stream = new FileStream("Properties/client_secret.json", FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                credPath = System.IO.Path.Combine(credPath, ".credentials/tasks-dotnet-quickstart.json");
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                System.Windows.MessageBox.Show("Credential file saved to: " + credPath);
-            }
-
-            // Create Google Tasks API service.
-            var service = new TasksService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            // Define parameters of request.
-            TasklistsResource.ListRequest listRequest = service.Tasklists.List();
-            listRequest.MaxResults = 10;
-
-            // List task lists.
-            IList<Google.Apis.Tasks.v1.Data.TaskList> gTaskLists = listRequest.Execute().Items;
-
+            IList<Google.Apis.Tasks.v1.Data.TaskList> gTaskLists = GoogleTasksAPIConnection.GetTaskLists();
+            int countAll = 0;
             if (gTaskLists != null && gTaskLists.Count > 0)
             {
                 ObservableCollection<TaskList> taskLists = new ObservableCollection<TaskList>();
                 foreach (var gtList in gTaskLists)
                 {
-                    taskLists.Add(new TaskList { Id = gtList.Id, Title = gtList.Title, Color = "#FFBB1E1E" });
-
+                    IList<Google.Apis.Tasks.v1.Data.Task> gTasks = GoogleTasksAPIConnection.GetTasks(gtList.Id);
+                    taskLists.Add(new TaskList { Id = gtList.Id, Title = gtList.Title, Color = "#FFBB1E1E", Count = gTasks.Count });
+                    countAll += gTasks.Count;
                 }
                 TaskLists = taskLists;
+                AllTasksCount = countAll;
             }
             else { System.Windows.MessageBox.Show("No task lists found."); }
 
